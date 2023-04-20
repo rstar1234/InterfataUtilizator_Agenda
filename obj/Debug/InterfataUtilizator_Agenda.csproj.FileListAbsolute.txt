@@ -1,0 +1,15 @@
+C:\Users\star\InterfataUtilizator_Agenda\bin\Debug\InterfataUtilizator_Agenda.exe.config
+C:\Users\star\InterfataUtilizator_Agenda\bin\Debug\InterfataUtilizator_Agenda.exe
+C:\Users\star\InterfataUtilizator_Agenda\bin\Debug\InterfataUtilizator_Agenda.pdb
+C:\Users\star\InterfataUtilizator_Agenda\bin\Debug\Agenda.exe
+C:\Users\star\InterfataUtilizator_Agenda\bin\Debug\Agenda.pdb
+C:\Users\star\InterfataUtilizator_Agenda\bin\Debug\Agenda.exe.config
+C:\Users\star\InterfataUtilizator_Agenda\obj\Debug\InterfataUtilizator_Agenda.csproj.AssemblyReference.cache
+C:\Users\star\InterfataUtilizator_Agenda\obj\Debug\InterfataUtilizator_Agenda.csproj.SuggestedBindingRedirects.cache
+C:\Users\star\InterfataUtilizator_Agenda\obj\Debug\InterfataUtilizator_Agenda.Form1.resources
+C:\Users\star\InterfataUtilizator_Agenda\obj\Debug\InterfataUtilizator_Agenda.Properties.Resources.resources
+C:\Users\star\InterfataUtilizator_Agenda\obj\Debug\InterfataUtilizator_Agenda.csproj.GenerateResource.cache
+C:\Users\star\InterfataUtilizator_Agenda\obj\Debug\InterfataUtilizator_Agenda.csproj.CoreCompileInputs.cache
+C:\Users\star\InterfataUtilizator_Agenda\obj\Debug\InterfataUtilizator_Agenda.csproj.CopyComplete
+C:\Users\star\InterfataUtilizator_Agenda\obj\Debug\InterfataUtilizator_Agenda.exe
+C:\Users\star\InterfataUtilizator_Agenda\obj\Debug\InterfataUtilizator_Agenda.pdb
