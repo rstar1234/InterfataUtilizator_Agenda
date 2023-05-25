@@ -20,7 +20,7 @@ namespace InterfataUtilizator_Agenda
     {
         AdministrarePersoane_FisierText adminPersoane;
         int nrPersoane = 0;
-        List<Persoana> persoane;
+        List<Persoana> persoane = new List<Persoana>();
         ArrayList grupuriSelectate = new ArrayList();
         public Form1()
         {
@@ -35,16 +35,21 @@ namespace InterfataUtilizator_Agenda
             Agenda.AdministrarePersoane_FisierText(caleCompletaFisier);
             persoane = adminPersoane.GetPersoane();
 
-            this.Size = new Size(600, 400);
+            this.Size = new Size(850, 500);
             dateTimeZiDeNastere.Format = DateTimePickerFormat.Long;
+            //pentru calculatoarele setate in limba romana, afiseaza "zi a saptamanii, zi luna an"
             dataGridPersoane.Visible = false;
+            //formularul se va lati cand se va apasa butonul "Afiseaza" si atunci va aparea controlul dataGridview
+            //este setat invizibil pentru a preveni afisarea trunchiata pe un formular mai putin lat
         }
         private void AfiseazaPersoane(List<Persoana> persoane)
         {
+            //lateste formularul si afiseaza controlul dataGridView
             this.Width = 1200;
-            //adminPersoane.GetPersoane();
             dataGridPersoane.DataSource = null;
             dataGridPersoane.DataSource = persoane;
+            dataGridPersoane.Columns[4].DefaultCellStyle.Format = "dd MMMM yyyy";
+            //pentru ca ziua de nastere sa fie afisata in formatul "zi luna_neprescurtata an"
             dataGridPersoane.Visible = true;
         }
 
@@ -55,6 +60,7 @@ namespace InterfataUtilizator_Agenda
 
         private void CheckGrupuri_CheckedChange(object sender, EventArgs e)
         {
+            //tinem eveidenta casetelor marcate cu ajutorul unui ArrayList
             CheckBox checkBox = sender as CheckBox;
             string grupSelectat = checkBox.Text;
 
@@ -74,11 +80,13 @@ namespace InterfataUtilizator_Agenda
         }
         private void Form1_Click(object sender, EventArgs e)
         {
+            //formularul revine la latimea initiala si ascunde controlul dataGridView
             AscundePersoane();
-            this.Width = 600;
+            this.Width = 850;
         }
         private void ResetareControale()
         {
+            //golim controalele pentru a facilita adaugarea unei noi persoane
             txtAddNume.Text = txtAddEmail.Text = txtAddNumarDeTelefon.Text = string.Empty;
             checkFamilie.Checked = false;
             checkPrieteni.Checked = false;
@@ -87,6 +95,7 @@ namespace InterfataUtilizator_Agenda
         }
         private bool ValidareEmail(string email)
         {
+            //verificam daca este intr-un format de tipul nume@exemplu.com, nu si daca adresa este reala
             var trimmedEmail = email.Trim();
 
             if (trimmedEmail.EndsWith("."))
@@ -112,6 +121,7 @@ namespace InterfataUtilizator_Agenda
         
         private void BtnAdd_Click(object sender, EventArgs e)
         {
+            //daca datele sunt valide, adaucam o persoana noua
             if (ValidareDate())
             {
                 Persoana persoana = new Persoana();
@@ -119,8 +129,7 @@ namespace InterfataUtilizator_Agenda
                 persoana.grupuri = grupuriSelectate;
                 persoana.nume = txtAddNume.Text;
                 persoana.ziDeNastere = DateTime.Parse(dateTimeZiDeNastere.Text);
-                int numarDeTelefon;
-                int.TryParse(txtAddNumarDeTelefon.Text.Replace(" ", ""), out numarDeTelefon);
+                int.TryParse(txtAddNumarDeTelefon.Text.Replace(" ", ""), out int numarDeTelefon);
                 persoana.numarDeTelefon = numarDeTelefon;
                 persoana.email = txtAddEmail.Text;
                 persoana._grup = grup;
@@ -135,39 +144,149 @@ namespace InterfataUtilizator_Agenda
             }
             else
             {
+                //daca nu, inrosim controalele si atentionam utilizatorul de ce nu sunt bune
                 lblAddNume.ForeColor = Color.Red;
                 lblAddEmail.ForeColor = Color.Red;
                 lblAddNumărDeTelefon.ForeColor = Color.Red;
-                txtAddNume.Text = "Numele trebuie sa contina intre 3 si 15 caractere";
-                txtAddNumarDeTelefon.Text = "Numarul de telefon trebuie sa contina cel putin 9 cifre";
-                txtAddEmail.Text = "Aceasta nu este o adresa de telefon valida";
+                MessageBox.Show("Numele trebuie sa contina intre 3 si 15 caractere");
+                MessageBox.Show("Numarul de telefon trebuie sa contina cel putin 9 cifre");
+                MessageBox.Show("Aceasta nu este o adresa de telefon valida");
+                MessageBox.Show("Alegeti cel putin un grup");
             }
             ResetareControale();
         }
 
         private void dateGridPersoane_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //atragem atentia utilizatorului asupra butonului de stergere
             btnSterge.Select();
             btnSterge.BackColor = Color.LightSeaGreen;
             btnSterge.ForeColor = Color.White;
         }
 
-        private void btnSterge_Click(object sender, EventArgs e)
+        private void BtnSterge_Click(object sender, EventArgs e)
         {
+            //stergem din fisier si din lista din care se preiau persoanele, apoi reincarcam controlul dataGridView
             int randSelectat = dataGridPersoane.CurrentRow.Index;
             int persoanaID = (int)dataGridPersoane.Rows[randSelectat].Cells[2].Value;
             adminPersoane.StergePersoana(persoane, persoanaID);
-            AfiseazaPersoane(persoane);
+            
             dataGridPersoane.DataSource = null;
-            dataGridPersoane.DataSource = persoane;
+            AfiseazaPersoane(persoane);
             btnSterge.BackColor = Color.White;
             btnSterge.ForeColor = Color.LightSeaGreen;
+        }
+        private List<Persoana> CautaDupaNume(string elementDeCautat)
+        {
+            //cauta o persoana sau mai multe dupa nume in lista
+            List<Persoana> persoaneGasite = new List<Persoana>();
+            foreach(Persoana persoana in persoane)
+            {
+                if(persoana.nume.Contains(elementDeCautat))
+                    persoaneGasite.Add(persoana);
+            }
+            return persoaneGasite;
+        }
+        private void btnCautaNume_Click(object sender, EventArgs e)
+        {
+            //afiseaza persoanele cautate in locul listei intregi de persoane
+            List<Persoana> persoaneGasite = new List<Persoana>();
+            persoaneGasite = CautaDupaNume(txtCauta.Text);
+            dataGridPersoane.DataSource = persoaneGasite;
+            AfiseazaPersoane(persoaneGasite);
+        }
+
+        private List<Persoana> CautaDupaNumarDeTelefon(string elementDeCautat)
+        {
+            //cauta o persoana sau mai multe dupa numarul de telefon in lista
+            List<Persoana> persoaneGasite = new List<Persoana>();
+            foreach (Persoana persoana in persoane)
+            {
+                if (persoana.numarDeTelefon.ToString().Contains(elementDeCautat))
+                    persoaneGasite.Add(persoana);
+            }
+            return persoaneGasite;
+        }
+
+        private void btnCautaNumarDeTelefon_Click(object sender, EventArgs e)
+        {
+            //afiseaza persoanele cautate in locul listei intregi de persoane
+            List<Persoana> persoaneGasite = new List<Persoana>();
+            persoaneGasite = CautaDupaNumarDeTelefon(txtCauta.Text);
+            dataGridPersoane.DataSource = persoaneGasite;
+            AfiseazaPersoane(persoaneGasite);
+        }
+
+        private List<Persoana> CautaDupaEmail(string elementDeCautat) 
+        {
+            //cauta o persoana sau mai multe dupa adresa de email in lista
+            List<Persoana> persoaneGasite = new List<Persoana>();
+            foreach (Persoana persoana in persoane)
+            {
+                if (persoana.email.Contains(elementDeCautat))
+                    persoaneGasite.Add(persoana);
+            }
+            return persoaneGasite;
+        }
+
+        private void btnCautaEmail_Click(object sender, EventArgs e)
+        {
+            //afiseaza persoanele cautate in locul listei intregi de persoane
+            List<Persoana> persoaneGasite = new List<Persoana>();
+            persoaneGasite = CautaDupaEmail(txtCauta.Text);
+            dataGridPersoane.DataSource = persoaneGasite;
+            AfiseazaPersoane(persoaneGasite);
+        }
+
+        private List<Persoana> CautaLuna(string elementDeCautat)
+        {
+            //cauta luna in care s-a nascut persoana respectiva
+            List<Persoana> persoaneGasite = new List<Persoana>();
+            string[] luni = { "ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "aeptembrie", "octombrie", "noiembrie", "decembrie"};
+            foreach (Persoana persoana in persoane)
+            {
+                if (persoana.ziDeNastere.ToString("dd MMMM yyyy").Contains(elementDeCautat) & luni.Contains(elementDeCautat))
+                {
+                    persoaneGasite.Add(persoana);
+                }
+            }
+            return persoaneGasite;
+        }
+
+        private void btnCautaLuna_Click(object sender, EventArgs e)
+        {
+            //afiseaza persoanele cautate in locul listei intregi de persoane
+            List<Persoana> persoaneGasite = new List<Persoana>();
+            persoaneGasite = CautaLuna(txtCauta.Text);
+            dataGridPersoane.DataSource = persoaneGasite;
+            AfiseazaPersoane(persoaneGasite);
+        }
+
+        private List<Persoana> CautaGrup(string elementDeCautat)
+        {
+            //cauta o persoana sau mai multe dupa unul din grupurile din care face parte in lista
+            List<Persoana> persoaneGasite = new List<Persoana>();
+            foreach (Persoana persoana in persoane)
+            {
+                if(persoana.GrupAsString.Contains(elementDeCautat))
+                    persoaneGasite.Add(persoana);
+            }
+            return persoaneGasite;
+        }
+
+        private void btnCautaGrup_Click(object sender, EventArgs e)
+        {
+            //afiseaza persoanele cautate in locul listei intregi de persoane
+            List<Persoana> persoaneGasite = new List<Persoana>();
+            persoaneGasite = CautaGrup(txtCauta.Text);
+            dataGridPersoane.DataSource = persoaneGasite;
+            AfiseazaPersoane(persoaneGasite);
         }
     }
 }
 
 /*to do:
- 1. data validation
- 2. search functions
- 3. delete function
+ 1. data validation - check
+ 2. search functions - 2 completed
+ 3. delete function - last element isn't getting deleted?
  4. figure out why the calendar isn't changing*/
