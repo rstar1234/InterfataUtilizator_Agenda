@@ -28,12 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbITitlu = new System.Windows.Forms.Label();
-            this.lblNume = new System.Windows.Forms.Label();
-            this.lblGrup = new System.Windows.Forms.Label();
-            this.lblEmail = new System.Windows.Forms.Label();
-            this.lblNumarDeTelefon = new System.Windows.Forms.Label();
-            this.lblZiDeNastere = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblAddNume = new System.Windows.Forms.Label();
             this.lblAddZiDeNastere = new System.Windows.Forms.Label();
             this.lblAddNumărDeTelefon = new System.Windows.Forms.Label();
@@ -48,80 +43,10 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnAfiseaza = new System.Windows.Forms.Button();
             this.dateTimeZiDeNastere = new System.Windows.Forms.DateTimePicker();
+            this.btnSterge = new System.Windows.Forms.Button();
+            this.dataGridPersoane = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPersoane)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lbITitlu
-            // 
-            this.lbITitlu.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.lbITitlu.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbITitlu.Location = new System.Drawing.Point(599, 33);
-            this.lbITitlu.Name = "lbITitlu";
-            this.lbITitlu.Size = new System.Drawing.Size(1032, 33);
-            this.lbITitlu.TabIndex = 0;
-            this.lbITitlu.Text = "Agenda";
-            this.lbITitlu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbITitlu.Visible = false;
-            this.lbITitlu.VisibleChanged += new System.EventHandler(this.Lbl_VisibleChanged);
-            // 
-            // lblNume
-            // 
-            this.lblNume.AutoSize = true;
-            this.lblNume.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.lblNume.Location = new System.Drawing.Point(599, 100);
-            this.lblNume.Name = "lblNume";
-            this.lblNume.Size = new System.Drawing.Size(51, 20);
-            this.lblNume.TabIndex = 1;
-            this.lblNume.Text = "Nume";
-            this.lblNume.Visible = false;
-            this.lblNume.VisibleChanged += new System.EventHandler(this.Lbl_VisibleChanged);
-            // 
-            // lblGrup
-            // 
-            this.lblGrup.AutoSize = true;
-            this.lblGrup.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.lblGrup.Location = new System.Drawing.Point(1489, 100);
-            this.lblGrup.Name = "lblGrup";
-            this.lblGrup.Size = new System.Drawing.Size(45, 20);
-            this.lblGrup.TabIndex = 2;
-            this.lblGrup.Text = "Grup";
-            this.lblGrup.Visible = false;
-            this.lblGrup.VisibleChanged += new System.EventHandler(this.Lbl_VisibleChanged);
-            // 
-            // lblEmail
-            // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.lblEmail.Location = new System.Drawing.Point(1281, 100);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(48, 20);
-            this.lblEmail.TabIndex = 3;
-            this.lblEmail.Text = "Email";
-            this.lblEmail.Visible = false;
-            this.lblEmail.VisibleChanged += new System.EventHandler(this.Lbl_VisibleChanged);
-            // 
-            // lblNumarDeTelefon
-            // 
-            this.lblNumarDeTelefon.AutoSize = true;
-            this.lblNumarDeTelefon.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.lblNumarDeTelefon.Location = new System.Drawing.Point(1018, 100);
-            this.lblNumarDeTelefon.Name = "lblNumarDeTelefon";
-            this.lblNumarDeTelefon.Size = new System.Drawing.Size(131, 20);
-            this.lblNumarDeTelefon.TabIndex = 4;
-            this.lblNumarDeTelefon.Text = "Număr de telefon";
-            this.lblNumarDeTelefon.Visible = false;
-            this.lblNumarDeTelefon.VisibleChanged += new System.EventHandler(this.Lbl_VisibleChanged);
-            // 
-            // lblZiDeNastere
-            // 
-            this.lblZiDeNastere.AutoSize = true;
-            this.lblZiDeNastere.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.lblZiDeNastere.Location = new System.Drawing.Point(782, 100);
-            this.lblZiDeNastere.Name = "lblZiDeNastere";
-            this.lblZiDeNastere.Size = new System.Drawing.Size(104, 20);
-            this.lblZiDeNastere.TabIndex = 5;
-            this.lblZiDeNastere.Text = "Zi de Nastere";
-            this.lblZiDeNastere.Visible = false;
-            this.lblZiDeNastere.VisibleChanged += new System.EventHandler(this.Lbl_VisibleChanged);
             // 
             // lblAddNume
             // 
@@ -175,6 +100,7 @@
             // 
             // txtAddNume
             // 
+            this.txtAddNume.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.txtAddNume.Location = new System.Drawing.Point(225, 46);
             this.txtAddNume.Name = "txtAddNume";
             this.txtAddNume.Size = new System.Drawing.Size(298, 26);
@@ -182,6 +108,7 @@
             // 
             // txtAddNumarDeTelefon
             // 
+            this.txtAddNumarDeTelefon.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.txtAddNumarDeTelefon.Location = new System.Drawing.Point(225, 202);
             this.txtAddNumarDeTelefon.Name = "txtAddNumarDeTelefon";
             this.txtAddNumarDeTelefon.Size = new System.Drawing.Size(298, 26);
@@ -189,6 +116,7 @@
             // 
             // txtAddEmail
             // 
+            this.txtAddEmail.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.txtAddEmail.Location = new System.Drawing.Point(225, 280);
             this.txtAddEmail.Name = "txtAddEmail";
             this.txtAddEmail.Size = new System.Drawing.Size(298, 26);
@@ -245,7 +173,7 @@
             // btnAfiseaza
             // 
             this.btnAfiseaza.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.btnAfiseaza.Location = new System.Drawing.Point(380, 471);
+            this.btnAfiseaza.Location = new System.Drawing.Point(338, 471);
             this.btnAfiseaza.Name = "btnAfiseaza";
             this.btnAfiseaza.Size = new System.Drawing.Size(85, 35);
             this.btnAfiseaza.TabIndex = 19;
@@ -264,11 +192,43 @@
             this.dateTimeZiDeNastere.Size = new System.Drawing.Size(298, 26);
             this.dateTimeZiDeNastere.TabIndex = 20;
             // 
+            // btnSterge
+            // 
+            this.btnSterge.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.btnSterge.Location = new System.Drawing.Point(438, 471);
+            this.btnSterge.Name = "btnSterge";
+            this.btnSterge.Size = new System.Drawing.Size(85, 35);
+            this.btnSterge.TabIndex = 21;
+            this.btnSterge.Text = "Sterge";
+            this.btnSterge.UseVisualStyleBackColor = true;
+            this.btnSterge.Click += new System.EventHandler(this.btnSterge_Click);
+            // 
+            // dataGridPersoane
+            // 
+            this.dataGridPersoane.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.LightSeaGreen;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightSeaGreen;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridPersoane.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridPersoane.Location = new System.Drawing.Point(621, 56);
+            this.dataGridPersoane.Name = "dataGridPersoane";
+            this.dataGridPersoane.RowHeadersWidth = 62;
+            this.dataGridPersoane.RowTemplate.Height = 28;
+            this.dataGridPersoane.Size = new System.Drawing.Size(985, 450);
+            this.dataGridPersoane.TabIndex = 22;
+            this.dataGridPersoane.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dateGridPersoane_CellClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1680, 544);
+            this.Controls.Add(this.dataGridPersoane);
+            this.Controls.Add(this.btnSterge);
             this.Controls.Add(this.dateTimeZiDeNastere);
             this.Controls.Add(this.btnAfiseaza);
             this.Controls.Add(this.btnAdd);
@@ -283,28 +243,16 @@
             this.Controls.Add(this.lblAddNumărDeTelefon);
             this.Controls.Add(this.lblAddZiDeNastere);
             this.Controls.Add(this.lblAddNume);
-            this.Controls.Add(this.lblZiDeNastere);
-            this.Controls.Add(this.lblNumarDeTelefon);
-            this.Controls.Add(this.lblEmail);
-            this.Controls.Add(this.lblGrup);
-            this.Controls.Add(this.lblNume);
-            this.Controls.Add(this.lbITitlu);
             this.Name = "Form1";
             this.Text = "Agenda";
             this.Click += new System.EventHandler(this.Form1_Click);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPersoane)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lbITitlu;
-        private System.Windows.Forms.Label lblNume;
-        private System.Windows.Forms.Label lblGrup;
-        private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.Label lblNumarDeTelefon;
-        private System.Windows.Forms.Label lblZiDeNastere;
         private System.Windows.Forms.Label lblAddNume;
         private System.Windows.Forms.Label lblAddZiDeNastere;
         private System.Windows.Forms.Label lblAddNumărDeTelefon;
@@ -319,6 +267,8 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnAfiseaza;
         private System.Windows.Forms.DateTimePicker dateTimeZiDeNastere;
+        private System.Windows.Forms.Button btnSterge;
+        private System.Windows.Forms.DataGridView dataGridPersoane;
     }
 }
 
