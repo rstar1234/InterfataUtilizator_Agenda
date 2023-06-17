@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblAddNume = new System.Windows.Forms.Label();
             this.lblAddZiDeNastere = new System.Windows.Forms.Label();
             this.lblAddNumărDeTelefon = new System.Windows.Forms.Label();
@@ -212,14 +212,14 @@
             // dataGridPersoane
             // 
             this.dataGridPersoane.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.LightSeaGreen;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightSeaGreen;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridPersoane.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.LightSeaGreen;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSeaGreen;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridPersoane.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridPersoane.Location = new System.Drawing.Point(615, 106);
             this.dataGridPersoane.Name = "dataGridPersoane";
             this.dataGridPersoane.RowHeadersWidth = 62;
@@ -241,7 +241,7 @@
             this.btnCautaNume.ForeColor = System.Drawing.Color.LightSeaGreen;
             this.btnCautaNume.Location = new System.Drawing.Point(420, 34);
             this.btnCautaNume.Name = "btnCautaNume";
-            this.btnCautaNume.Size = new System.Drawing.Size(109, 35);
+            this.btnCautaNume.Size = new System.Drawing.Size(123, 35);
             this.btnCautaNume.TabIndex = 24;
             this.btnCautaNume.Text = "Cauta Nume";
             this.btnCautaNume.UseVisualStyleBackColor = true;
@@ -250,7 +250,7 @@
             // btnCautaLuna
             // 
             this.btnCautaLuna.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.btnCautaLuna.Location = new System.Drawing.Point(564, 34);
+            this.btnCautaLuna.Location = new System.Drawing.Point(574, 34);
             this.btnCautaLuna.Name = "btnCautaLuna";
             this.btnCautaLuna.Size = new System.Drawing.Size(109, 35);
             this.btnCautaLuna.TabIndex = 25;
@@ -261,7 +261,7 @@
             // btnCautaNumarDeTelefon
             // 
             this.btnCautaNumarDeTelefon.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.btnCautaNumarDeTelefon.Location = new System.Drawing.Point(708, 34);
+            this.btnCautaNumarDeTelefon.Location = new System.Drawing.Point(714, 34);
             this.btnCautaNumarDeTelefon.Name = "btnCautaNumarDeTelefon";
             this.btnCautaNumarDeTelefon.Size = new System.Drawing.Size(200, 35);
             this.btnCautaNumarDeTelefon.TabIndex = 26;
@@ -272,7 +272,7 @@
             // btnCautaGrup
             // 
             this.btnCautaGrup.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.btnCautaGrup.Location = new System.Drawing.Point(1087, 34);
+            this.btnCautaGrup.Location = new System.Drawing.Point(1085, 34);
             this.btnCautaGrup.Name = "btnCautaGrup";
             this.btnCautaGrup.Size = new System.Drawing.Size(109, 35);
             this.btnCautaGrup.TabIndex = 27;
@@ -283,7 +283,7 @@
             // btnCautaEmail
             // 
             this.btnCautaEmail.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.btnCautaEmail.Location = new System.Drawing.Point(943, 34);
+            this.btnCautaEmail.Location = new System.Drawing.Point(945, 34);
             this.btnCautaEmail.Name = "btnCautaEmail";
             this.btnCautaEmail.Size = new System.Drawing.Size(109, 35);
             this.btnCautaEmail.TabIndex = 28;

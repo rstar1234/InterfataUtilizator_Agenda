@@ -64,7 +64,7 @@ namespace InterfataUtilizator_Agenda
             CheckBox checkBox = sender as CheckBox;
             string grupSelectat = checkBox.Text;
 
-            if(checkBox.Checked == true)
+            if (checkBox.Checked == true)
             {
                 grupuriSelectate.Add(grupSelectat);
             }
@@ -73,7 +73,7 @@ namespace InterfataUtilizator_Agenda
                 grupuriSelectate.Remove(grupSelectat);
             }
         }
-        
+
         private void BtnAfiseaza_Click(object sender, EventArgs e)
         {
             AfiseazaPersoane(persoane);
@@ -114,11 +114,11 @@ namespace InterfataUtilizator_Agenda
         }
         private bool ValidareDate()
         {
-            if (txtAddNume.Text.Length < 3 || txtAddNume.Text.Length > 15 || !int.TryParse(txtAddNumarDeTelefon.Text.Replace(" ", ""), out int numarDeTelefon) || txtAddNumarDeTelefon.Text.Length < 9 || !ValidareEmail(txtAddEmail.Text) || (checkFamilie.Checked == false && checkPrieteni.Checked == false && checkServiciu.Checked == false))
+            if (txtAddNume.Text.Length < 3 || txtAddNume.Text.Length > 15 || !int.TryParse(txtAddNumarDeTelefon.Text.Replace(" ", ""), out int numarDeTelefon) || txtAddNumarDeTelefon.Text.Length < 9 || !ValidareEmail(txtAddEmail.Text) || (checkFamilie.Checked == false && checkPrieteni.Checked == false && checkServiciu.Checked == false) || DateTime.Parse(dateTimeZiDeNastere.Text) >= DateTime.UtcNow)
                 return false;
             return true;
         }
-        
+
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             //daca datele sunt valide, adaucam o persoana noua
@@ -126,7 +126,7 @@ namespace InterfataUtilizator_Agenda
             {
                 Persoana persoana = new Persoana();
                 Persoana.Grup grup = persoana.GetGrup(string.Join(", ", grupuriSelectate.Cast<string>().ToArray()));
-                persoana.grupuri = grupuriSelectate;
+                //persoana.grupuri = grupuriSelectate;
                 persoana.nume = txtAddNume.Text;
                 persoana.ziDeNastere = DateTime.Parse(dateTimeZiDeNastere.Text);
                 int.TryParse(txtAddNumarDeTelefon.Text.Replace(" ", ""), out int numarDeTelefon);
@@ -140,6 +140,8 @@ namespace InterfataUtilizator_Agenda
                 lblAddNume.ForeColor = Color.LightSeaGreen;
                 lblAddEmail.ForeColor = Color.LightSeaGreen;
                 lblAddNumărDeTelefon.ForeColor = Color.LightSeaGreen;
+                lblAddGrup.ForeColor = Color.LightSeaGreen;
+                lblAddZiDeNastere.ForeColor = Color.LightSeaGreen;
                 AfiseazaPersoane(persoane);
             }
             else
@@ -148,10 +150,12 @@ namespace InterfataUtilizator_Agenda
                 lblAddNume.ForeColor = Color.Red;
                 lblAddEmail.ForeColor = Color.Red;
                 lblAddNumărDeTelefon.ForeColor = Color.Red;
-                MessageBox.Show("Numele trebuie sa contina intre 3 si 15 caractere");
+                lblAddZiDeNastere.ForeColor = Color.Red;
+                lblAddGrup.ForeColor = Color.Red;
+                /*MessageBox.Show("Numele trebuie sa contina intre 3 si 15 caractere");
                 MessageBox.Show("Numarul de telefon trebuie sa contina cel putin 9 cifre");
                 MessageBox.Show("Aceasta nu este o adresa de telefon valida");
-                MessageBox.Show("Alegeti cel putin un grup");
+                MessageBox.Show("Alegeti cel putin un grup");*/
             }
             ResetareControale();
         }
@@ -169,8 +173,9 @@ namespace InterfataUtilizator_Agenda
             //stergem din fisier si din lista din care se preiau persoanele, apoi reincarcam controlul dataGridView
             int randSelectat = dataGridPersoane.CurrentRow.Index;
             int persoanaID = (int)dataGridPersoane.Rows[randSelectat].Cells[2].Value;
+
             adminPersoane.StergePersoana(persoane, persoanaID);
-            
+
             dataGridPersoane.DataSource = null;
             AfiseazaPersoane(persoane);
             btnSterge.BackColor = Color.White;
@@ -180,9 +185,9 @@ namespace InterfataUtilizator_Agenda
         {
             //cauta o persoana sau mai multe dupa nume in lista
             List<Persoana> persoaneGasite = new List<Persoana>();
-            foreach(Persoana persoana in persoane)
+            foreach (Persoana persoana in persoane)
             {
-                if(persoana.nume.Contains(elementDeCautat))
+                if (persoana.nume.Contains(elementDeCautat))
                     persoaneGasite.Add(persoana);
             }
             return persoaneGasite;
@@ -217,7 +222,7 @@ namespace InterfataUtilizator_Agenda
             AfiseazaPersoane(persoaneGasite);
         }
 
-        private List<Persoana> CautaDupaEmail(string elementDeCautat) 
+        private List<Persoana> CautaDupaEmail(string elementDeCautat)
         {
             //cauta o persoana sau mai multe dupa adresa de email in lista
             List<Persoana> persoaneGasite = new List<Persoana>();
@@ -242,7 +247,7 @@ namespace InterfataUtilizator_Agenda
         {
             //cauta luna in care s-a nascut persoana respectiva
             List<Persoana> persoaneGasite = new List<Persoana>();
-            string[] luni = { "ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "aeptembrie", "octombrie", "noiembrie", "decembrie"};
+            string[] luni = { "ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "aeptembrie", "octombrie", "noiembrie", "decembrie" };
             foreach (Persoana persoana in persoane)
             {
                 if (persoana.ziDeNastere.ToString("dd MMMM yyyy").Contains(elementDeCautat) & luni.Contains(elementDeCautat))
@@ -268,7 +273,7 @@ namespace InterfataUtilizator_Agenda
             List<Persoana> persoaneGasite = new List<Persoana>();
             foreach (Persoana persoana in persoane)
             {
-                if(persoana.GrupAsString.Contains(elementDeCautat))
+                if (persoana.GrupAsString.Contains(elementDeCautat))
                     persoaneGasite.Add(persoana);
             }
             return persoaneGasite;
@@ -282,11 +287,13 @@ namespace InterfataUtilizator_Agenda
             dataGridPersoane.DataSource = persoaneGasite;
             AfiseazaPersoane(persoaneGasite);
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
-/*to do:
- 1. data validation - check
- 2. search functions - 2 completed
- 3. delete function - last element isn't getting deleted?
+/*to do:?
  4. figure out why the calendar isn't changing*/
